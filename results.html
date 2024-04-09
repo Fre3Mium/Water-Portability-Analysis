@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Analysis Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .result p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Water Analysis Results</h2>
+        
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>pH</td>
+                <td id="ph"></td>
+            </tr>
+            <tr>
+                <td>Hardness</td>
+                <td id="hardness"></td>
+            </tr>
+            <tr>
+                <td>Solids</td>
+                <td id="solids"></td>
+            </tr>
+            <tr>
+                <td>Chloramines</td>
+                <td id="chloramines"></td>
+            </tr>
+            <tr>
+                <td>Sulfate</td>
+                <td id="sulfate"></td>
+            </tr>
+            <tr>
+                <td>Conductivity</td>
+                <td id="conductivity"></td>
+            </tr>
+            <tr>
+                <td>Organic Carbon</td>
+                <td id="organic_carbon"></td>
+            </tr>
+            <tr>
+                <td>Trihalomethanes</td>
+                <td id="trihalomethanes"></td>
+            </tr>
+            <tr>
+                <td>Turbidity</td>
+                <td id="turbidity"></td>
+            </tr>
+            <tr>
+                <td>Potability</td>
+                <td id="potability"></td>
+            </tr>
+        </table>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Get the input values from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const ph = urlParams.get('ph');
+        const hardness = urlParams.get('hardness');
+        const solids = urlParams.get('solids');
+        const chloramines = urlParams.get('chloramines');
+        const sulfate = urlParams.get('sulfate');
+        const conductivity = urlParams.get('conductivity');
+        const organic_carbon = urlParams.get('organic_carbon');
+        const trihalomethanes = urlParams.get('trihalomethanes');
+        const turbidity = urlParams.get('turbidity');
+        const potability = urlParams.get('potability');
+
+        // Display the input values in the table
+        document.getElementById('ph').textContent = ph;
+        document.getElementById('hardness').textContent = hardness;
+        document.getElementById('solids').textContent = solids;
+        document.getElementById('chloramines').textContent = chloramines;
+        document.getElementById('sulfate').textContent = sulfate;
+        document.getElementById('conductivity').textContent = conductivity;
+        document.getElementById('organic_carbon').textContent = organic_carbon;
+        document.getElementById('trihalomethanes').textContent = trihalomethanes;
+        document.getElementById('turbidity').textContent = turbidity;
+        document.getElementById('potability').textContent = potability;
+
+        // Determine and display the result
+        const resultElement = document.getElementById('result');
+        if (potability === 'Yes') {
+            resultElement.innerHTML = '<p>The water is <span style="color: green;">potable</span>.</p>';
+        } else if (potability === 'No') {
+            resultElement.innerHTML = '<p>The water is <span style="color: red;">not potable</span>.</p>';
+        } else {
+            resultElement.innerHTML = '<p>Unable to determine potability.</p>';
+        }
+    </script>
+</body>
+</html>
